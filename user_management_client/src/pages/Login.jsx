@@ -53,6 +53,8 @@ const Login = () => {
             return;
         }
 
+        return;
+
         // set user data in context and redirect to users page
         userAction.setUser(response.data.data)
         navigate("/users");
