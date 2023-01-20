@@ -9,7 +9,7 @@ const GetUsers = async (req, res) => {
     catch (error) {
         console.log(__dirname, __filename);
         // console.log(error);
-        return res.send({ status: false, message: error.message })
+        return res.send({ status: false, message: error.message, errors: [error.message] })
     }
 }
 
@@ -20,7 +20,7 @@ const GetUser = async (req, res) => {
         return res.send({ status: true, data: response[0] });
     }
     catch (error) {
-        return res.send({ status: false, message: error.message })
+        return res.send({ status: false, message: error.message, errors: [error.message] })
     }
 }
 
@@ -33,7 +33,7 @@ const CreateUser = async (req, res) => {
         return res.send({ status: true, message: "Successfully create", data: response });
     }
     catch (error) {
-        return res.send({ status: false, message: error.message })
+        return res.send({ status: false, message: error.message, errors: [error.message] })
     }
 }
 
@@ -50,7 +50,7 @@ const UpdateUser = async (req, res) => {
         return res.send({ status: true, message: "successfully updated", data: response });
     }
     catch (error) {
-        return res.send({ status: false, message: error.message })
+        return res.send({ status: false, message: error.message, errors: [error.message] })
     }
 }
 
@@ -61,7 +61,7 @@ const DeleteUser = async (req, res) => {
         return res.send({ status: true, message: "successfully deleted" });
     }
     catch (error) {
-        return res.send({ status: false, message: error.message })
+        return res.send({ status: false, message: error.message, errors: [error.message] })
     }
 }
 

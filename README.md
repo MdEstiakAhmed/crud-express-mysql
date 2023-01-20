@@ -8,13 +8,16 @@
 - MySQL
 
 ## Need to install
+
 - [Node.js](https://nodejs.org/en/download/)
 - [xampp](https://sourceforge.net/projects/xampp/)
 
 ## Follow the steps to setup database
+
 - Start Apache and MySQL server from XAMPP
 - Goto `http://127.0.0.1/phpmyadmin/` and create a database called `express_mysql_crud`
-- Run the create query into the MySQL server for creating `users` table. 
+- Run the create query into the MySQL server for creating `users` table.
+
 ```
 CREATE TABLE users (
     id int PRIMARY KEY AUTO_INCREMENT,
@@ -28,12 +31,15 @@ CREATE TABLE users (
     attempt int
 );
 ```
-- Run the insert query into the MySQL server for inserting a row into `users` table. 
+
+- Run the insert query into the MySQL server for inserting a row into `users` table.
+
 ```
 INSERT INTO `users`(`name`, `username`, `email`, `avatar`, `role`, `password`, `status`, `attempt`) VALUES ('admin','admin','admin@app.com','','admin','11111',true,0)
 ```
 
 ## Follow the steps to run the application
+
 - clone this repo. `git clone https://github.com/MdEstiakAhmed/crud-express-mysql.git`
 - goto `user_management_server` folder and run `npm install`
 - then start server with `npm run dev`
@@ -43,6 +49,8 @@ INSERT INTO `users`(`name`, `username`, `email`, `avatar`, `role`, `password`, `
 
 ## Credential
 
-|            | email         | password |
-| ---------- | ------------- | -------- |
-| First User | admin@app.com | Aa_10000 |
+|        | email          | password |
+| ------ | -------------- | -------- |
+| User-1 | admin@app.com  | Aa_10000 |
+| User-2 | admin2@app.com | Aa_10000 |
+| User-3 | admin3@app.com | Aa_10000 |

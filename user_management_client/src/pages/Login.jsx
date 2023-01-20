@@ -3,13 +3,22 @@ import { useNavigate } from "react-router-dom";
 import InputBox from "../components/form/InputBox";
 import useGetContext from "../hooks/useGetContext";
 import { login } from "../services/api/auth";
+import { authChecker } from "../services/authentication/authChecker";
 import { isEmailValid, isPasswordValid } from "../services/validation/inputValidation";
 
 const Login = () => {
-    const { userAction } = useGetContext();
+    const { userAction, authAction } = useGetContext();
     const navigate = useNavigate();
     const [values, setValues] = useState({});
     const [errors, setErrors] = useState({});
+
+    // check auth and redirect to users page
+    // useEffect(() => {
+    //     const isAuthenticated = authChecker();
+    //     if(isAuthenticated) {
+    //         navigate("/users");
+    //     }
+    // }, []);
 
     // error state reset on input change
     useEffect(() => {
@@ -46,17 +55,14 @@ const Login = () => {
         // call api function
         let response = await login({ data: values });
 
-        console.log(response);
-
         if (!response.status) {
             handleSetErrors("common", response.errors);
             return;
         }
 
-        return;
-
         // set user data in context and redirect to users page
-        userAction.setUser(response.data.data)
+        authAction.setAuth();
+        userAction.setUser(response.data)
         navigate("/users");
     }
     return (

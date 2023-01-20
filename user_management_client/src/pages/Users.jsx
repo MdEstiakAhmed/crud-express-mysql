@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "../components/modal/Modal";
 import UserForm from "../components/pages/users/UserForm";
@@ -6,10 +6,11 @@ import DataTable from "../components/table/DataTable"
 import { useFetch } from "../hooks/useFetch";
 import useGetContext from "../hooks/useGetContext";
 import { deleteUser, fetchUsers } from "../services/api/users";
+import { authChecker } from "../services/authentication/authChecker";
 import { showAlertPopup } from "../utils/alert";
 
 const Users = () => {
-    const {userAction} = useGetContext();
+    const {userAction, authAction} = useGetContext();
     const navigate = useNavigate();
     const [modal, setModal] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
@@ -17,6 +18,7 @@ const Users = () => {
 
     const { data, isLoading, isError, error } = useFetch(fetchUsers, {}, [isReload]);
 
+    // create table rows from response
     const handleCreateTableRows = () => {
         return data.map(user => {
             return [
@@ -29,12 +31,14 @@ const Users = () => {
         })
     }
 
+    // handle modal open and close
     const handleModal = (type, data, refetch) => {
         setSelectedUser(data);
         refetch && setIsReload(prev => !prev);
         setModal(type);
     }
 
+    // handle user delete
     const handleDelete = async(id) => {
         let response = await deleteUser({id});    
         if(response.status) {
@@ -43,7 +47,9 @@ const Users = () => {
         }
     }
 
+    // handle logout
     const handleLogout = () => {
+        authAction.unsetAuth();
         userAction.unsetUser()
         navigate("/login");
     }

@@ -20,7 +20,7 @@ const userReducer = (state, action) => {
             return action.payload;
         case UNSET_USER:
             removeLocalStorage(process.env.REACT_APP_USER_LOCAL_STORAGE_KEY)
-            return undefined;
+            return {};
         default:
             return state;
     }
