@@ -1,0 +1,33 @@
+/* flexbox css */
+.flex {
+    display: flex;
+}
+.flex-row {
+    flex-direction: row;
+}
+.flex-column {
+    flex-direction: column;
+}
+.flex-wrap {
+    flex-wrap: wrap;
+}
+.flex-nowrap {
+    flex-wrap: nowrap;
+}
+.gap-3 {
+    gap: 3px;
+}
+.gap-5 {
+    gap: 5px;
+}
+.gap-10 {
+    gap: 10px;
+}
+/* flexbox css */
+
+/* error css */
+.error {
+    font-size: 10px;
+    color: red;
+}
+/* error css */
