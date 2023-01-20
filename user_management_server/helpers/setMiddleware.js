@@ -4,7 +4,6 @@ const formidable = require('express-formidable');
 
 const middleware = [
     cors(),
-    // express.json(),
     formidable(),
 ];
 

@@ -8,7 +8,6 @@ class DB {
             user: "root",
             password: "",
             database: "express_mysql_crud",
-            // connectionLimit: 10
         })
     }
     query = (sql, values) => {

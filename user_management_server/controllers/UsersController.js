@@ -8,7 +8,6 @@ const GetUsers = async (req, res) => {
     }
     catch (error) {
         console.log(__dirname, __filename);
-        // console.log(error);
         return res.send({ status: false, message: error.message, errors: [error.message] })
     }
 }
@@ -44,9 +43,7 @@ const UpdateUser = async (req, res) => {
             let hashedPassword = await passwordEncrypt(password)
             req.fields.password = hashedPassword;
         }
-        console.log(req.fields);
         const response = await updateUser(req.fields, req.params.userId);
-        console.log(response);
         return res.send({ status: true, message: "successfully updated", data: response });
     }
     catch (error) {
@@ -57,7 +54,6 @@ const UpdateUser = async (req, res) => {
 const DeleteUser = async (req, res) => {
     try {
         const response = await deleteUser(req.params.userId);
-        console.log(response);
         return res.send({ status: true, message: "successfully deleted" });
     }
     catch (error) {

@@ -35,9 +35,7 @@ const isConfirmPasswordValid = (password, confirmPassword) => {
 }
 
 const isUsernameValid = (username) => {
-    // regex for not support special characters
     let regex = /^[a-zA-Z0-9]+$/;
-    console.log(regex.test(username));
     if(!regex.test(username)) {
         return {status: false, errors: ["Username must not contain '&', '$', '%, '-', '_'"]}
     }

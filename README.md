@@ -12,8 +12,11 @@
 - [Node.js](https://nodejs.org/en/download/)
 - [xampp](https://sourceforge.net/projects/xampp/)
 
-## Follow the steps to setup database
+## Follow the steps to setup database (by importing)
+- Start Apache and MySQL server from XAMPP
+- Goto `http://127.0.0.1/phpmyadmin/` and import the database file from `/docs/express_mysql_crud.sql`
 
+## Follow the steps to setup database (Manual)
 - Start Apache and MySQL server from XAMPP
 - Goto `http://127.0.0.1/phpmyadmin/` and create a database called `express_mysql_crud`
 - Run the create query into the MySQL server for creating `users` table.

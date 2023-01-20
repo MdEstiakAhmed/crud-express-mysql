@@ -1,7 +1,6 @@
 const { isEmailValid, isPasswordValid } = require("../../utils/inputValidation");
 
 const loginValidator = (req, res, next) => {
-    console.log("loginValidator");
     const { email, password } = req.fields;
 
     // email validation

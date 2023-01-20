@@ -1,5 +1,6 @@
 const { loginUser, createAdmin, UpdateWrongLoginAttempt, BlockUser } = require("../services/AuthService");
 const { passwordEncrypt, passwordCompare } = require("../utils/passwordHash");
+const jwt = require("jsonwebtoken");
 
 const SignIn = async (req, res) => {
     try {
@@ -32,12 +33,23 @@ const SignIn = async (req, res) => {
             }
             return res.send({ status: false, errors: [`Invalid credential. ${attemptLeft} attempt left.`] });
         }
-        return res.send({ status: true, message: "Successfully logged in", data: response[0] });
+        const tokenObject = {
+            id: response[0].id,
+            email: response[0].email
+        }
+        const token = jwt.sign(tokenObject, process.env.APP_SECRET_KEY, {expiresIn: "1d"});
+        let responseData = {
+            ...response[0],
+            token
+        }
+        return res.send({ status: true, message: "Successfully logged in", data: responseData });
     }
     catch (error) {
         return res.send({ status: false, message: error.message })
     }
 }
+
+// only for first time setup
 const Signup = async (req, res) => {
     try {
         let data = {
@@ -53,7 +65,6 @@ const Signup = async (req, res) => {
         let hashedPassword = await passwordEncrypt(data.password)
         data.password = hashedPassword;
         const response = await createAdmin(data);
-        console.log(response);
         return res.send({ status: true, message: "" });
     }
     catch (error) {

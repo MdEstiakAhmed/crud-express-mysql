@@ -160,12 +160,12 @@ const formFields = (type) => {
             placeholder: "email",
             errorName: "email"
         },
-        {
-            type: "file",
-            name: "avatar",
-            placeholder: "avatar",
-            errorName: "avatar"
-        },
+        // {
+        //     type: "file",
+        //     name: "avatar",
+        //     placeholder: "avatar",
+        //     errorName: "avatar"
+        // },
         {
             type: "password",
             name: "password",
