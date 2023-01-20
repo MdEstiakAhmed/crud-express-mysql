@@ -21,13 +21,15 @@ const App = () => {
 	return (
 		<>
 			<ToastNotification />
-			{
-				(authState === true) ? (
-					<PrivateRoute />
-				) : (authState === false) ? (
-					<PublicRoute />
-				) : "Loading..."
-			}
+			<div className="container">
+				{
+					(authState === true) ? (
+						<PrivateRoute />
+					) : (authState === false) ? (
+						<PublicRoute />
+					) : "Loading..."
+				}
+			</div>
 		</>
 	);
 }
@@ -38,12 +40,10 @@ export default App;
 const PrivateRoute = () => {
 	return (
 		<>
-			<section className="dashboardArea">
-				<Routes>
-					<Route path="/users" element={<Users />} />
-					<Route path="*" element={<Navigate to="/users" />} />
-				</Routes>
-			</section>
+			<Routes>
+				<Route path="/users" element={<Users />} />
+				<Route path="*" element={<Navigate to="/users" />} />
+			</Routes>
 		</>
 	)
 }

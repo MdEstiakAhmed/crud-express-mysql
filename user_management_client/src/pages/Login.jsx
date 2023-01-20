@@ -42,6 +42,7 @@ const Login = () => {
     // handle login submit
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         const { password, email } = values;
 
         // email validate and show error
@@ -54,6 +55,7 @@ const Login = () => {
 
         // call api function
         let response = await login({ data: values });
+        console.log(response);
 
         if (!response.status) {
             handleSetErrors("common", response.errors);
@@ -67,16 +69,19 @@ const Login = () => {
     }
     return (
         <>
-            <div>
+            <div >
                 <div>
-                    <form className="flex flex-column gap-10" onSubmit={handleSubmit}>
+                    <form className="flex flex-column gap-10 flex-justify-center" style={{maxWidth: "300px", margin: "auto", height: "100vh"}} onSubmit={handleSubmit}>
+                        <h2>Login</h2>
+                        <h5>Email: admin@app.com</h5>
+                        <h5>Password: Aa_10000</h5>
                         {
                             formFields.map(field => (
                                 <div className="flex flex-column gap-3" key={field.name}>
                                     <div>
                                         {
                                             field.type === "submit" ? (
-                                                <button type={field.type}>{field.value}</button>
+                                                <button className="success w-100" type={field.type}>{field.value}</button>
                                             ) : (
                                                 <InputBox
                                                     type={field.type}

@@ -106,7 +106,7 @@ const UserForm = ({ type, data, handleModal }) => {
                                     <div>
                                         {
                                             field.type === "submit" ? (
-                                                <button type={field.type}>{field.value}</button>
+                                                <button className="success" type={field.type}>{field.value}</button>
                                             ) : (
                                                 <InputBox
                                                     type={field.type}

@@ -10,7 +10,7 @@ import { authChecker } from "../services/authentication/authChecker";
 import { showAlertPopup } from "../utils/alert";
 
 const Users = () => {
-    const {userAction, authAction} = useGetContext();
+    const { userAction, authAction } = useGetContext();
     const navigate = useNavigate();
     const [modal, setModal] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
@@ -39,9 +39,9 @@ const Users = () => {
     }
 
     // handle user delete
-    const handleDelete = async(id) => {
-        let response = await deleteUser({id});    
-        if(response.status) {
+    const handleDelete = async (id) => {
+        let response = await deleteUser({ id });
+        if (response.status) {
             handleModal(null, null, true);
             showAlertPopup("success", response.message);
         }
@@ -60,6 +60,7 @@ const Users = () => {
                     <Modal
                         title={modal === "add" ? "add user" : modal === "edit" ? "edit user" : ""}
                         onClose={handleModal}
+                        maxWidth="400px"
                     >
                         <UserForm
                             type={modal}
@@ -74,15 +75,18 @@ const Users = () => {
                     <Modal
                         title="delete user"
                         onClose={handleModal}
+                        maxWidth="400px"
                     >
                         <div>Are you sure you want to delete this user?</div>
-                        <button onClick={() =>{handleDelete(selectedUser.id)}}>Yes</button>
-                        <button onClick={() => handleModal(null, null)}>No</button>
+                        <button className="m-3 danger" onClick={() => { handleDelete(selectedUser.id) }}>Yes</button>
+                        <button className="m-3 warning" onClick={() => handleModal(null, null)}>No</button>
                     </Modal>
                 ) : ""
             }
-            <button onClick={() => handleModal("add")}>Add</button>
-            <button onClick={() => handleLogout()}>Logout</button>
+            <div className="flex flex-align-center flex-space-between m-10">
+                <button className="success" onClick={() => handleModal("add")}>Add</button>
+                <button className="danger" onClick={() => handleLogout()}>Logout</button>
+            </div>
             {
                 isLoading ? (
                     <div>Loading...</div>
@@ -107,11 +111,11 @@ export default Users;
 
 const EditButton = ({ onClick, data }) => {
     return (
-        <button onClick={() => onClick("edit", data)}>Edit</button>
+        <button className="primary m-3" onClick={() => onClick("edit", data)}>Edit</button>
     )
 }
 const DeleteButton = ({ onClick, data }) => {
     return (
-        <button onClick={() => onClick("delete", data)}>delete</button>
+        <button className="warning m-3" onClick={() => onClick("delete", data)}>delete</button>
     )
 }
